@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <script src="/js/sigma.min.js"></script>
+    <script src="/js/sigma.parsers.json.min.js"></script>
+    <script>
+      sigma.parsers.json('data.json', {
+      container: 'container',
+      settings: {
+        defaultNodeColor: '#ec5148'
+      }
+      });
+    </script>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
     <title>Home</title>
   </head>
@@ -11,6 +22,9 @@
       	<span data-lift="HelloWorld.howdy">
       	  Welcome to your Lift app at <span id="time">Time goes here</span>
       	</span>
+        <span data-lift="HelloWorld.nodes">
+          There's a <span id="node">Node Goes here</span>
+        </span>
       </p>
     </div>
   </body>

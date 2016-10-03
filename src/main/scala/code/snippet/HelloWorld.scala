@@ -19,5 +19,9 @@ class HelloWorld {
 
    def howdy = "#time *" #> date.toString
    */
+
+  def nodes = {
+    "#node" #> date.isEmpty
+  }
 }
 
