@@ -1,14 +1,25 @@
 package code 
-package snippet 
+package snippet
 
 import scala.xml.{NodeSeq, Text}
 import net.liftweb.util._
 import net.liftweb.common._
 import java.util.Date
+import java.util.zip.{ZipInputStream, ZipEntry}
+import sys.process._
+import java.net.URL
+import java.io.File
 import code.lib._
 import Helpers._
 
+
 class HelloWorld {
+
+  val url = new URL("https://snap.stanford.edu/data/web-Stanford.txt.gz") #> new File("dataSet.txt.gz") !!
+
+  val iterator = GzFileIterator(new java.io.File("dataSet.txt.gz"), "UTF-8")
+  iterator.foreach(println)
+
   lazy val date: Box[Date] = DependencyFactory.inject[Date] // inject the date
 
   // replace the contents of the element with id "time" with the date
@@ -23,5 +34,8 @@ class HelloWorld {
   def nodes = {
     "#node" #> date.isEmpty
   }
+
+
+
 }
 

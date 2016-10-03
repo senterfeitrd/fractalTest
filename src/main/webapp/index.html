@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <title>Home</title>
+  </head>
+  <body data-lift-content-id="main">
 
     <script src="/js/sigma.min.js"></script>
     <script src="/js/sigma.parsers.json.min.js"></script>
@@ -12,18 +16,17 @@
       }
       });
     </script>
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-    <title>Home</title>
-  </head>
-  <body data-lift-content-id="main">
+
     <div id="main" data-lift="surround?with=default;at=content">
       <h2>Welcome to your project!</h2>
       <p>
       	<span data-lift="HelloWorld.howdy">
       	  Welcome to your Lift app at <span id="time">Time goes here</span>
       	</span>
+      </p>
+      <p>
         <span data-lift="HelloWorld.nodes">
-          There's a <span id="node">Node Goes here</span>
+          Test boolean is checking if a date is empty: <span id="node">boolean goes here</span>
         </span>
       </p>
     </div>
