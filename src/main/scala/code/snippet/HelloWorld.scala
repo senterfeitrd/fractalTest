@@ -18,24 +18,21 @@ class HelloWorld {
   val url = new URL("https://snap.stanford.edu/data/web-Stanford.txt.gz") #> new File("dataSet.txt.gz") !!
 
   val iterator = GzFileIterator(new java.io.File("dataSet.txt.gz"), "UTF-8")
-  iterator.foreach(println)
+  val nodesArray : Array[String] = iterator.drop(3).toArray
 
-  lazy val date: Box[Date] = DependencyFactory.inject[Date] // inject the date
+  println(nodesArray)
+
+  //original code
+  // lazy val date: Box[Date] = DependencyFactory.inject[Date] // inject the date
 
   // replace the contents of the element with id "time" with the date
-  def howdy = "#time *" #> date.map(_.toString)
+  //def howdy = "#time *" #> date.map(_.toString)
 
   /*
    lazy val date: Date = DependencyFactory.time.vend // create the date via factory
 
    def howdy = "#time *" #> date.toString
    */
-
-  def nodes = {
-    "#node" #> date.isEmpty
-  }
-
-
 
 }
 
