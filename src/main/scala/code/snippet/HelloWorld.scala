@@ -11,6 +11,7 @@ import java.net.URL
 import java.io.File
 import code.lib._
 import Helpers._
+import code.model.Node
 
 
 class HelloWorld {
@@ -18,21 +19,35 @@ class HelloWorld {
   val url = new URL("https://snap.stanford.edu/data/web-Stanford.txt.gz") #> new File("dataSet.txt.gz") !!
 
   val iterator = GzFileIterator(new java.io.File("dataSet.txt.gz"), "UTF-8")
-  val nodesArray : Array[String] = iterator.drop(3).toArray
+  //val nodesArray : Array[String] = new Array[String](iterator.size - 3)
 
-  println(nodesArray)
+  var nodesMap: Map[String, Node] = Map()
 
-  //original code
-  // lazy val date: Box[Date] = DependencyFactory.inject[Date] // inject the date
+  iterator.drop(3).foreach{ nodeline:String =>
+    val nodeSplit = nodeline.split(" ")
+    val node1Id = nodeSplit(0)
+    val node2Id = nodeSplit(1)
+    var node1 = new Node(node1Id)
+    var node2 = new Node(node2Id)
 
-  // replace the contents of the element with id "time" with the date
-  //def howdy = "#time *" #> date.map(_.toString)
+    if (nodesMap.contains(node1Id)) {
+      node1 = nodesMap(node1Id)
+    } else {
+      nodesMap += (node1Id -> node1)
+    }
 
-  /*
-   lazy val date: Date = DependencyFactory.time.vend // create the date via factory
+    if (nodesMap.contains(node2Id)) {
+      node2 = nodesMap(node2Id)
+    } else {
+      nodesMap += (node2Id -> node2)
+    }
 
-   def howdy = "#time *" #> date.toString
-   */
+    node1.connections :+ node2
+    node2.connections :+ node1
+  }
+
+  //def printNodes = "#nodesArray" #> nodeSplit.length
+
 
 }
 
